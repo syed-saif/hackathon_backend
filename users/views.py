@@ -38,3 +38,12 @@ class ProfileView(APIView):
     def get(self, request):
         serializer = serializers.UserProfileSerializer(instance=request.user)
         return Response(data=serializer.data)
+
+class SignupView(APIView):
+
+    def post(self, request):
+        data = request.data.copy()
+        signup_serializer = serializers.SignupSerializer(data=data)
+        signup_serializer.is_valid(raise_exception=True)
+        user = signup_serializer.save()
+        return Response(status=200)

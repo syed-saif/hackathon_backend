@@ -46,3 +46,32 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User
         fields = ('id', 'name', 'email', 'phone_number')
+
+
+class SignupSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.User
+        fields = ('id', 'name', 'email', 'phone_number', 'password')
+        extra_kwargs = {
+            'password': {'write_only': True, 'required': False}
+        }
+
+    def validate_email(self, email):
+        if models.User.objects.filter(email__iexact=email).exists():
+            msg = _('This user already exists. Please sign in.')
+            raise serializers.ValidationError(msg)
+        return email
+
+    def validate_phone_number(self, phone_number):
+        if models.User.objects.filter(phone_number__iexact=phone_number).exists():
+            msg = _('This user already exists. Please sign in.')
+            raise serializers.ValidationError(msg)
+        return phone_number
+
+    def save(self):
+        password = self.validated_data.pop('password', None)
+        user = super().save()
+        user.set_password(password)
+        user.save()
+        return user
