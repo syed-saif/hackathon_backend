@@ -27,7 +27,7 @@ DATABASE_PASSWORD='psqlpassword'
 6. Activate virutalenvironment
 
 ```
-source </path/to/venv_ma>/bin/activate
+source </path/to/venv_ha>/bin/activate
 ```
 
 7. Run ``` pip install -r requirements.txt ```. This should install all the dependecies.
