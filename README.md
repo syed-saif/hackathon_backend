@@ -39,3 +39,5 @@ python manage.py migrate
 ```
 
 9. Run ``` python manage.py runserver ```. This should start the webserver and you are good to go.
+
+Thanks for reading!
