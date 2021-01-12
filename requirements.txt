@@ -15,7 +15,6 @@ google-cloud-vision==2.0.0
 googleapis-common-protos==1.52.0
 grpcio==1.33.2
 idna==2.10
-ipython==7.19.0
 ipython-genutils==0.2.0
 jedi==0.17.2
 libcst==0.3.14
